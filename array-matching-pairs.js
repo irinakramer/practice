@@ -7,6 +7,7 @@ function sockMerchant(n, ar) {
     //create object with elements as keys, and frequencies as values
     const mapped = ar.reduce((map, val) => {
         map[val] = (map[val] || 0) + 1;
+        console.log(map)
         return map;
     }, {});
     // put frequencies into an array
@@ -21,4 +22,4 @@ function sockMerchant(n, ar) {
     return pairs;
 }
 
-sockMerchant(n, array);
+console.log(sockMerchant(n, array));
