@@ -1,4 +1,5 @@
 // 3. Longest Substring Without Repeating Characters
+// Medium
 
 // https://leetcode.com/problems/longest-substring-without-repeating-characters/
 
@@ -23,40 +24,27 @@
  */
 
 var lengthOfLongestSubstring = function (s) {
-  // Create longest Map to keep track of unique chars and their indices
   let longest = new Map();
   let max = 0;
 
   for (let i = 0; i < s.length; i++) {
     if (!longest.has(s[i])) {
-      // If char is not in longest, then add it
       longest.set(s[i], i);
     } else {
-      /**
-      If char is in longest, delete it and all chars before it.
-      To do so:
-      1 - convert longest to array
-      2 - filter out elements with index greater than current char
-      3 - convert filtered arr back to longest Map
-       */
-
       const arr = Array.from(longest);
-      const filtered = arr.filter((el) => {
-        return el[1] >= longest.get(s[i]);
-      });
+      const filtered = arr.filter((el) => el[1] >= longest.get(s[i]));
 
       longest = new Map(filtered);
 
-      // Then add back current char
       longest.set(s[i], i);
     }
-    // Check if longest size is greater than max
     if (longest.size > max) max = longest.size;
   }
 
   return max;
 };
 
+// ================= //
 const s = 'abcabcbb';
 // const s = "bbbbb"
 // const s = "pwwkew"
