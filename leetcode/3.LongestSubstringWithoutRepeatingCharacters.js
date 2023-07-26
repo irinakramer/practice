@@ -7,46 +7,34 @@
  * @param {string} s
  * @return {number}
  */
+/* 
 
-/**
- * Create a Map to keep track of unique chars and their indices
- * Create max to record the size the Map
- * Iterate over string
- * If char is not in Map, then add it
- * If char is in Map, delete it and all chars before it.
-      To do so:
-      1 - convert Map to array
-      2 - filter out elements with index greater than current char
-      3 - convert filtered arr back to Map
- * Then add the current char to Map, it will have a different index
- * Check if Map size is greater than max and if so, reassign max
- * Return max
- */
+  */
 
-var lengthOfLongestSubstring = function (s) {
-  let longest = new Map();
-  let max = 0;
-
-  for (let i = 0; i < s.length; i++) {
-    if (!longest.has(s[i])) {
-      longest.set(s[i], i);
+// sunny's solution
+function lengthOfLongestSubstring(str) {
+  if (str.length === 0 || str.length === 1) return str.length;
+  const set = new Set(str[0]);
+  let start = 0;
+  let end = 1;
+  let max = 1;
+  while (end < str.length) {
+    if (!set.has(str[end])) {
+      set.add(str[end]);
+      max = Math.max(max, end - start + 1);
     } else {
-      const arr = Array.from(longest);
-      const filtered = arr.filter((el) => el[1] >= longest.get(s[i]));
-
-      longest = new Map(filtered);
-
-      longest.set(s[i], i);
+      while (str[start] !== str[end]) {
+        set.delete(str[start]);
+        start++;
+      }
+      start++;
     }
-    if (longest.size > max) max = longest.size;
+    end++;
   }
 
   return max;
-};
+}
 
-// ================= //
-const s = 'abcabcbb';
-// const s = "bbbbb"
-// const s = "pwwkew"
-
-console.log(lengthOfLongestSubstring(s));
+console.log(lengthOfLongestSubstring('abcabcbb')); // 3
+console.log(lengthOfLongestSubstring('pwwkew')); // 3
+console.log(lengthOfLongestSubstring('bbbbb')); // 1
