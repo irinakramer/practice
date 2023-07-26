@@ -34,5 +34,39 @@ function buildGraph(edges) {
   return graph;
 }
 
-console.log(buildGraph(roads));
+const roadGraph = buildGraph(roads);
+console.log(roadGraph);
 // {Alice's House:	["Bob's House", "Cabin", "Post Office"], ...}
+
+class VillageState {
+  constructor(place, parcels) {
+    this.place = place;
+    this.parcels = parcels;
+  }
+
+  move(destination) {
+    if (!roadGraph[this.place].includes(destination)) {
+      return this; // returns old state
+    } else {
+      // move parcels to new destination
+      // create new parcels
+      let parcels = this.parcels
+        .map((p) => {
+          if (p.place != this.place) return p; // if parcel is not at current location, return it as is
+          return { place: destination, address: p.address }; // else assign destination to its location (move it or deliver it)
+        })
+        .filter((p) => p.place != p.address); // remove delivered parcels
+
+      return new VillageState(destination, parcels);
+    }
+  }
+}
+
+let first = new VillageState('Post Office', [
+  { place: 'Post Office', address: "Alice's House" },
+]);
+let next = first.move("Alice's House");
+
+console.log(next.place); // Alice's House
+console.log(next.parcels); // []
+console.log(first.place); // Post Office
