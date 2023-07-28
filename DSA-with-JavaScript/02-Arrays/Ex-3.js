@@ -1,4 +1,4 @@
-const { matrix } = require('../helpers/arrayHelper');
+const { flatten2D } = require('../helpers/arrayHelper');
 
 class weeklyTemps {
   constructor() {
@@ -15,13 +15,7 @@ class weeklyTemps {
   }
 
   average() {
-    let alltemps = [];
-
-    for (let i = 0; i < this.dataStore.length; i++) {
-      for (let j = 0; j < this.dataStore[i].length; j++) {
-        alltemps.push(this.dataStore[i][j]);
-      }
-    }
+    let alltemps = flatten2D(this.dataStore);
 
     return Math.round(
       alltemps.reduce((acc, curr) => acc + curr) / alltemps.length
