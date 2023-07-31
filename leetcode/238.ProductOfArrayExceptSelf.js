@@ -56,3 +56,26 @@ var productExceptSelf = function (nums) {
 const nums = [1, 2, 3, 4]; // [24,12,8,6]
 //const nums = [-1,1,0,-3,3];   // [0,0,9,0,0]
 console.log(productExceptSelf(nums));
+
+// solution from 7/31/23: O(n)
+function productExceptItself(nums) {
+  const res = [];
+
+  const left = new Array(nums.length).fill(1);
+
+  for (let i = 1; i < nums.length; i++) {
+    left[i] = nums[i - 1] * left[i - 1];
+  }
+
+  const right = new Array(nums.length).fill(1);
+
+  for (let i = nums.length - 2; i >= 0; i--) {
+    right[i] = nums[i + 1] * right[i + 1];
+  }
+
+  for (let i = 0; i < nums.length; i++) {
+    res.push(left[i] * right[i]);
+  }
+
+  return res;
+}
