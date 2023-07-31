@@ -62,3 +62,42 @@ var threeSum = function (nums) {
 
   return answer;
 };
+
+// solution from 7/31/23
+function threeSum(nums) {
+  const result = [];
+
+  nums = nums.sort((a, b) => a - b);
+
+  for (let i = 0; i < nums.length; i++) {
+    let target = -nums[i];
+    let left = i + 1; // j
+    let right = nums.length - 1; // k
+
+    while (left < right) {
+      let sum = nums[left] + nums[right];
+
+      if (sum < target) {
+        left++;
+      } else if (sum > target) {
+        right--;
+      } else {
+        let triplet = [nums[i], nums[left], nums[right]];
+        result.push(triplet);
+
+        while (left < right && triplet[1] === nums[left]) {
+          left++;
+        }
+        while (left < right && triplet[2] === nums[right]) {
+          right--;
+        }
+      }
+    }
+
+    while (i + 1 < nums.length && nums[i] === nums[i + 1]) {
+      i++;
+    }
+  }
+
+  return result;
+}
