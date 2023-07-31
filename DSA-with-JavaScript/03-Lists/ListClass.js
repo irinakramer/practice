@@ -100,26 +100,35 @@ class List {
   }
 }
 
-let myList = new List();
-myList.append(1);
-myList.append(2);
-myList.remove(2);
-myList.insert(2, 1);
-console.log(myList.toString());
-myList.moveTo(1);
-console.log(myList.currPos());
-console.log(myList.previous());
-console.log(myList.next());
-console.log(myList.hasNext());
-console.log(myList.hasPrevious());
-myList.append(3);
-console.log(myList.toString());
+// let myList = new List();
+// myList.append(1);
+// myList.append(2);
+// myList.remove(2);
+// myList.insert(2, 1);
+// console.log(myList.toString());
+// myList.moveTo(1);
+// console.log(myList.currPos());
+// console.log(myList.previous());
+// console.log(myList.next());
+// console.log(myList.hasNext());
+// console.log(myList.hasPrevious());
+// myList.append(3);
+// console.log(myList.toString());
 
-// iterators
-for (myList.front(); myList.hasNext(); ) {
-  console.log(myList.next());
-}
+// // iterators
+// for (myList.front(); myList.hasNext(); ) {
+//   console.log(myList.next());
+// }
 
-for (myList.back(); myList.hasPrevious(); ) {
-  console.log(myList.previous());
-}
+// for (myList.back(); myList.hasPrevious(); ) {
+//   console.log(myList.previous());
+// }
+
+// This makes sure the data is exported in node.js —
+// `require('./path/to/scripts.js')` will get you the array.
+if (
+  typeof module != 'undefined' &&
+  module.exports &&
+  (typeof window == 'undefined' || window.exports != exports)
+)
+  module.exports = { List };
