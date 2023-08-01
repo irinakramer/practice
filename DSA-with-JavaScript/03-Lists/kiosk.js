@@ -34,6 +34,15 @@ function checkOut(name, movie, moviesList, customerList, rentedList) {
   }
 }
 
+function checkIn(movie, movieList, rentedList) {
+  if (rentedList.contains(movie)) {
+    rentedList.remove(movie);
+    movieList.append(movie);
+  } else {
+    console.log(`${movie} is not available.`);
+  }
+}
+
 // Create movies array from films
 const movies = films.split(',');
 
@@ -63,5 +72,12 @@ console.log('Customer rentals: ');
 displayList(customers);
 // Ex-4
 console.log('Movie rentals: ');
+displayList(rentedList);
+console.groupEnd();
+
+console.group();
+// Ex-5
+checkIn('big fish', movieList, rentedList);
+console.log('Movie rentals after checkin: ');
 displayList(rentedList);
 console.groupEnd();
