@@ -23,10 +23,11 @@ function displayList(list) {
 }
 
 // Check out a movie with customer object
-function checkOut(name, movie, moviesList, customerList) {
+function checkOut(name, movie, moviesList, customerList, rentedList) {
   if (movieList.contains(movie)) {
     const c = new Customer(name, movie);
     customerList.append(c);
+    rentedList.append(movie);
     moviesList.remove(movie);
   } else {
     console.log(`${movie} is not available.`);
@@ -39,6 +40,7 @@ const movies = films.split(',');
 // Create new Lists
 const movieList = new List();
 const customers = new List();
+const rentedList = new List();
 
 // Populate List with movies
 for (let i = 0; i < movies.length; i++) {
@@ -46,10 +48,20 @@ for (let i = 0; i < movies.length; i++) {
 }
 
 displayList(movieList);
-checkOut('irina', 'big fish', movieList, customers);
+checkOut('irina', 'big fish', movieList, customers, rentedList);
+checkOut(
+  'glen',
+  '2 Fast 2 Furious',
+  movieList,
+  customers,
+  rentedList
+);
 console.group();
 console.log('Available movies: ');
 displayList(movieList);
 console.log('Customer rentals: ');
 displayList(customers);
+// Ex-4
+console.log('Movie rentals: ');
+displayList(rentedList);
 console.groupEnd();
