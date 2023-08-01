@@ -48,6 +48,33 @@ class List {
     return false;
   }
 
+  sortAscending() {
+    return this.dataStore.sort((a, b) => a - b);
+  }
+
+  insertLarger(element) {
+    this.sortAscending();
+
+    if (element > this.dataStore[this.dataStore.length - 1]) {
+      this.append(element);
+      return true;
+    }
+
+    return false;
+  }
+
+  insertSmaller(element) {
+    this.sortAscending();
+
+    if (element < this.dataStore[0]) {
+      this.dataStore.unshift(element);
+      this.listSize++;
+      return true;
+    }
+
+    return false;
+  }
+
   clear() {
     delete this.dataStore;
     this.dataStore = [];
