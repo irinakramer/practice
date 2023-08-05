@@ -7,7 +7,7 @@
  * @param {number[]} nums
  * @return {number}
  */
-
+// Method 1 - Solution with Map, O(n) time, O(n) space
 var removeDuplicates = function (nums) {
   let map = new Map();
   let temp = [];
@@ -31,5 +31,43 @@ var removeDuplicates = function (nums) {
 
   for (let i = 0; i < temp.length; i++) {
     nums[i] = temp[i];
+  }
+};
+
+// Method 2 - Modifying array in place, O(n) time, O(1) space
+/**
+ 1,1,1,2,2,3
+ c n => c=2
+   c n ==> remove n, n = 2
+
+ 1,1,2,2,3  
+   c n c=1 move
+     c n ==> c=2
+       c n c=1 move ==> loop ended
+
+answer:
+1,1,2,2,3        
+  */
+
+var removeDuplicates = function (nums) {
+  let count = 1;
+  let curr = 0;
+  let next = 1;
+
+  while (next < nums.length) {
+    if (nums[curr] === nums[next]) {
+      if (count < 2) {
+        count++;
+        curr++;
+        next++;
+      } else {
+        nums.splice(next, 1);
+        next = curr + 1;
+      }
+    } else {
+      count = 1;
+      curr++;
+      next++;
+    }
   }
 };
