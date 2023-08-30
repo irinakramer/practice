@@ -38,3 +38,31 @@ var pivotIndex = function (nums) {
 
     return -1;
 };
+
+/**
+ * Method 2 - Compare with Total
+ * Calculate total first, then calculate leftSum and rightSum, and compare them
+ *
+ * Time O(n) | Space O(1)
+ */
+
+var pivotIndex = function (nums) {
+    let total = 0;
+    let leftSum = 0;
+
+    for (let el of nums) {
+        total += el;
+    }
+
+    for (let i = 0; i < nums.length; i++) {
+        let rightSum = total - nums[i] - leftSum;
+
+        if (leftSum === rightSum) {
+            return i;
+        }
+
+        leftSum += nums[i];
+    }
+
+    return -1;
+};
