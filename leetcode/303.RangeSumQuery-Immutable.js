@@ -5,6 +5,8 @@
 
 /**
  * @param {number[]} nums
+ * Constructor - runs only once
+ * Time O(n) | Space O(n)
  */
 var NumArray = function (nums) {
     this.prefix = new Array();
@@ -20,6 +22,8 @@ var NumArray = function (nums) {
  * @param {number} left
  * @param {number} right
  * @return {number}
+ * sumRange - runs many times
+ * Time O(1) | Space O(1)
  */
 NumArray.prototype.sumRange = function (left, right) {
     let rightPrefix = this.prefix[right];
