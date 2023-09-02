@@ -19,6 +19,7 @@ If not, clear hash and start over
 keep track on max length of hash
  
  Time O(nlogn) b/c of sorting | Space O(n)
+ TODO: time O(n) - do this without sorting
   */
 var longestConsecutive = function (nums) {
     if (nums.length <= 1) return nums.length;
