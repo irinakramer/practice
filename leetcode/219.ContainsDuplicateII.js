@@ -53,13 +53,12 @@ var containsNearbyDuplicate = function (nums, k) {
     let L = 0;
 
     for (let R = 0; R < nums.length; R++) {
-        if (set.has(nums[R])) {
-            return true;
-        }
-
-        if (R - L + 1 > k) {
+        if (R - L > k) {
             set.delete(nums[L]);
             L++;
+        }
+        if (set.has(nums[R])) {
+            return true;
         }
 
         set.add(nums[R]);
@@ -67,3 +66,6 @@ var containsNearbyDuplicate = function (nums, k) {
 
     return false;
 };
+
+console.log(containsNearbyDuplicate([1, 2, 3, 1], 3)); // true
+console.log(containsNearbyDuplicate([1, 2, 3, 1, 2, 3], 2)); // false
