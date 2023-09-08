@@ -101,8 +101,7 @@ var removeDuplicates = function (nums) {
   */
 
 var removeDuplicates = function (nums) {
-    let L = 0,
-        R = 0;
+    let L = 0;
 
     for (let el of nums) {
         if (L === 0 || L === 1 || nums[L - 2] != el) {
