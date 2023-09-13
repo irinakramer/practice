@@ -7,19 +7,23 @@
  * @param {number[]} prices
  * @return {number}
  */
+// Two pointers
+// Time O(n) | Space O(1)
 var maxProfit = function (prices) {
-  let max = 0;
-  let left = 0,
-    right = 1;
+    let max = 0;
+    let left = 0,
+        right = 1;
 
-  while (right < prices.length) {
-    if (prices[left] < prices[right]) {
-      let diff = prices[right] - prices[left];
-      max += diff;
+    while (right < prices.length) {
+        if (prices[left] < prices[right]) {
+            let diff = prices[right] - prices[left];
+            max += diff;
+        }
+        left++;
+        right++;
     }
-    left++;
-    right++;
-  }
 
-  return max;
+    return max;
 };
+
+console.log(maxProfit([7, 1, 5, 3, 6, 4]));
