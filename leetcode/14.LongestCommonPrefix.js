@@ -7,18 +7,24 @@
  * @return {string}
  */
 
+/**
+Nested loop solution
+
+ Time O(n * k) best, O(n^2) worst | Space O(n)
+  */
+
 var longestCommonPrefix = function (strs) {
-  let longest = strs[0];
+    let longest = strs[0];
 
-  for (let i = 1; i < strs.length; i++) {
-    for (let j = 0; j < longest.length; j++) {
-      if (strs[i][j] !== longest[j]) {
-        longest = longest.substring(0, j);
-      }
+    for (let i = 1; i < strs.length; i++) {
+        for (let j = 0; j < longest.length; j++) {
+            if (strs[i][j] !== longest[j]) {
+                longest = longest.substring(0, j);
+            }
+        }
     }
-  }
 
-  return longest;
+    return longest;
 };
 
 /**
