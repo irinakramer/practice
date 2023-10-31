@@ -36,3 +36,8 @@ var checkInclusion = function (s1, s2) {
 
     return false;
 };
+
+console.log(checkInclusion("hello", "ooolleoooleh")); // false
+console.log(checkInclusion("ab", "eidbaooo")); // true
+
+// TODO - better time complexity with hashmap lookup
